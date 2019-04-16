@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         *  so it require defered
         **/
 
-        rxWithRetrofitNoObservable()
     }
 
     @SuppressLint("CheckResult")
