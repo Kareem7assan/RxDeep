@@ -17,5 +17,4 @@ interface AppDao {
     fun addPosts(posts:List<PostModel>)
 
 
-
 }

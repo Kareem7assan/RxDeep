@@ -2,6 +2,7 @@ package com.aait.rxdeep.repository
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 import com.aait.rxdeep.models.PostModel
 import io.reactivex.Observable
 
@@ -13,13 +14,12 @@ class RepoPostsImp(val localRepo:LocalRepo,val remoteRepo: RepoPosts) : RepoPost
                 savePosts(it)
             }
 
-
     }
 
     @SuppressLint("CheckResult")
     override fun savePosts(posts:List<PostModel>) {
-            Observable.fromCallable {
-                localRepo.savePosts(posts)
-            }
+
+        localRepo.savePosts(posts)
+
     }
 }

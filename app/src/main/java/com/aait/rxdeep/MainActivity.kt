@@ -2,12 +2,14 @@ package com.aait.rxdeep
 
 import android.annotation.SuppressLint
 import android.app.ProgressDialog
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.aait.rxdeep.models.PostModel
 import com.aait.rxdeep.network.RetroWeb
+import com.aait.rxdeep.ui.activities.PostsActivity
 import com.google.gson.Gson
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -36,6 +38,9 @@ class MainActivity : AppCompatActivity() {
         * doens't delay to subscribe to it
         *  so it require defered
         **/
+        val intent = Intent(this, PostsActivity::class.java)
+        startActivity(intent)
+        finish()
 
     }
 
@@ -48,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 Log.e("result",Gson().toJson(it))
+
             },{
                 Log.e("error",it.message)
             },{

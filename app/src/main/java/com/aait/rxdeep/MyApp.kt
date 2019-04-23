@@ -1,8 +1,10 @@
 package com.aait.rxdeep
 
 import android.app.Application
-import org.koin.android.ext.android.startKoin
-import org.koin.dsl.module.module
+import org.koin.android.ext.koin.androidContext
+
+import org.koin.core.context.startKoin
+
 
 class MyApp : Application() {
     companion object{
@@ -11,7 +13,13 @@ class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
         APP=this
-        startKoin(applicationContext,listOf(appModule))
+        startKoin {
+            // declare used Android context
+            androidContext(this@MyApp)
+            // declare modules
+            modules(appModule)
+        }
+
 
     }
 }
