@@ -14,33 +14,34 @@ import com.aait.rxdeep.ui.viewmodels.PostsViewModel
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_posts.*
 import org.koin.android.ext.android.inject
+import org.koin.android.viewmodel.ext.android.getViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
+/*import org.koin.androidx.viewmodel.ext.android.viewModel*/
+
 class PostsActivity : AppCompatActivity() {
-  //  val adapter:PostAdapter by inject()
-
-    private lateinit var adapter: PostAdapter
-
-    //val viewModel : PostsViewModel by viewModel()
+    val adapter:PostAdapter by inject()
+    private val USER_ID: Int=1
+    val viewModel:PostsViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_posts)
-        adapter=PostAdapter()
-        Log.e("work","work")
         setupRec()
-
-        val viewModel = ViewModelProviders.of(this).get(PostsViewModel::class.java)
-        viewModel.getPosts(1)
+        /*viewModel=getViewModel()*/
+        //val viewModel = ViewModelProviders.of(this).get(PostsViewModel::class.java)
+        viewModel.getPosts(USER_ID)
         viewModel.states!!.observe(this, Observer {
             when{
                 it.status==Resource.Status.LOADING->{
-                    Log.e("error","loading")}
+                    Log.e("error","loading")
+                }
                 it.status==Resource.Status.SUCCESS->{
                     Log.e("data",Gson().toJson(it.data as (List<*>)))
                     adapter.swapData(it.data as (List<PostModel>))
                     }
                 it.status==Resource.Status.ERROR->{
-                    Log.e("error",it.message)}
+                    Log.e("error",it.message)
+                }
             }
 
         })

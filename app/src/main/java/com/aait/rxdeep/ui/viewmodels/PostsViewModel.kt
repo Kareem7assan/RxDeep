@@ -18,16 +18,12 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import com.aait.rxdeep.models.PostModel as PostModel1
 
-class PostsViewModel(application: Application/*application: Application,*//*private val repoImp:RepoPostsImp*/) :
+class PostsViewModel(application: Application/*application: Application,*//*,private val repoImp:RepoPostsImp*/) :
     AndroidViewModel( application) {
-    private var repoImp: RepoPostsImp
-    // private val repoImp:RepoPostsImp by inject()
+    private var repoImp: RepoPostsImp = RepoPostsImp(LocalRepo(),RemoteRepo())
+
     private val compositeDisposable = CompositeDisposable()
     var states: MutableLiveData<Resource<Any>>? = MutableLiveData()
-
-    init {
-        repoImp = RepoPostsImp(LocalRepo,RemoteRepo)
-    }
 
 
     @SuppressLint("CheckResult")

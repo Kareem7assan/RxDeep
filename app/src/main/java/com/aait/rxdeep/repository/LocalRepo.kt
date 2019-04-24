@@ -7,7 +7,7 @@ import com.aait.rxdeep.local_db.AppDB
 import com.aait.rxdeep.models.PostModel
 import io.reactivex.Observable
 
-object LocalRepo : RepoPosts {
+class LocalRepo : RepoPosts {
 
     override fun getPosts(user_id:Int): Observable<List<PostModel>> {
 
