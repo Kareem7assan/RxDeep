@@ -8,7 +8,6 @@ class RemoteRepo :RepoPosts{
     override fun getPosts(user_id:Int): Observable<List<PostModel>> {
         return RetroWeb.serviceApi.posts(user_id)
     }
-
     override fun savePosts(posts:List<PostModel>) {
 
     }

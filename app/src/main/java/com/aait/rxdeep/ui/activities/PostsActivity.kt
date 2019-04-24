@@ -36,7 +36,6 @@ class PostsActivity : AppCompatActivity() {
                     Log.e("error","loading")
                 }
                 it.status==Resource.Status.SUCCESS->{
-                    Log.e("data",Gson().toJson(it.data as (List<*>)))
                     adapter.swapData(it.data as (List<PostModel>))
                     }
                 it.status==Resource.Status.ERROR->{
